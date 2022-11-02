@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { ColorModeContext, useMode } from "./theme";
+//import { CssBaseLine, TeameProvider } from '@mui/material';
+import Topbar from "./scenes/global/Topbar"
+import TeameProvider from "@emotion/styled"
+import { CssBaseline } from "@mui/material";
 
 function App() {
+  const [theme, colorMode] = useMode();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ColorModeContext.Provider value={colorMode}>
+      <TeameProvider theme={theme}>
+        <CssBaseline />
+        <div className="app">
+          <main className="content">
+            <Topbar />
+          </main>
+        </div>
+      </TeameProvider>
+    </ColorModeContext.Provider>
   );
 }
 
